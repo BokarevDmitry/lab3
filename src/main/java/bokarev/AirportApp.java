@@ -11,7 +11,7 @@ public class AirportApp {
         JavaRDD<String> flightsData = sc.textFile("/user/dima/664600583_T_ONTIME_sample.csv");
         JavaRDD<String> airportsData = sc.textFile("/user/dima/L_AIRPORT_ID.csv");
 
-        sc.collect();
+        sc.
         System.out.println("КОЛИЧЕСТВО ЗАПИСЕЙ - ", res.count());
     }
 }
