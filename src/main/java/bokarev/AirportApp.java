@@ -27,6 +27,7 @@ public class AirportApp {
                         //String cancelStatus = columns[19];
                         return new Tuple2<>(airportsPair, timeDelay);
                     }
+                    return new Tuple2<>("", (float)0);
                 }
         );
 
