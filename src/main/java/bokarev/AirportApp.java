@@ -21,7 +21,7 @@ public class AirportApp {
                     String[] columns = s.split(",");
                     String airportsPair = columns[11] + "-" + columns[14];
                     String timeDelay = columns[18];
-                    
+                    String cancelStatus = columns[19];
 
                     return new Tuple2<>()
                 }
