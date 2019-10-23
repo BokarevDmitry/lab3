@@ -10,10 +10,14 @@ public class AirportApp {
         SparkConf conf = new SparkConf().setAppName("AirportApp");
         JavaSparkContext sc = new JavaSparkContext(conf);
 
-        JavaRDD<String> flightsData = sc.textFile("/user/dima/664600583_T_ONTIME_sample.csv");
-        JavaRDD<String> airportsData = sc.textFile("/user/dima/L_AIRPORT_ID.csv");
+        JavaRDD<String> flightsRDD = sc.textFile("/user/dima/664600583_T_ONTIME_sample.csv");
+        JavaRDD<String> airportsRDD = sc.textFile("/user/dima/L_AIRPORT_ID.csv");
 
-        List<String> s = flightsData.collect();
-        System.out.println(s.get(5));
+
+        
+
+        //List<String> flightsList = flightsRDD.collect();
+        //List<String> airportList = airportsRDD.collect();
+        //System.out.println(s.get(5));
     }
 }
