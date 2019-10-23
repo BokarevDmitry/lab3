@@ -32,7 +32,7 @@ public class AirportApp {
         );
 
         JavaPairRDD<String, Float> counts = pairs.reduceByKey(
-                (Float a, Float b) -> a + b
+                (Float a, Float b) -> Math.max(a,b)
         );
 
         System.out.println(counts.collect());
