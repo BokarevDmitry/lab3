@@ -14,8 +14,8 @@ public class AirportApp {
         JavaRDD<String> airportsRDD = sc.textFile("/user/dima/L_AIRPORT_ID.csv");
 
 
-        
 
+        conf.
         //List<String> flightsList = flightsRDD.collect();
         //List<String> airportList = airportsRDD.collect();
         //System.out.println(s.get(5));
