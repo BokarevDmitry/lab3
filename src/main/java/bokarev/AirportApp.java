@@ -20,9 +20,12 @@ public class AirportApp {
                 (String s) -> {
                     String[] columns = s.split(",");
                     String airportsPair = columns[11] + "-" + columns[14];
-                    Float timeDelay = Float.parseFloat(columns[18]);
-                    //String cancelStatus = columns[19];
-                    return new Tuple2<>(airportsPair, timeDelay);
+
+                    if (!columns[18].contains("ARR")) {
+                        Float timeDelay = Float.parseFloat(columns[18]);
+                        //String cancelStatus = columns[19];
+                        return new Tuple2<>(airportsPair, timeDelay);
+                    }
                 }
         );
 
