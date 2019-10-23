@@ -19,7 +19,8 @@ public class AirportApp {
         JavaPairRDD<String, Float> pairs = flightsRDD.mapToPair(
                 (String s) -> {
                     String[] columns = s.split(",");
-                    String airportsPair = columns[]
+                    String airportsPair = columns[11] + "-" + columns[14];
+                    
                     return new Tuple2<>()
                 }
         )
