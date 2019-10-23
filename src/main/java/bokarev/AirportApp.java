@@ -1,7 +1,9 @@
 package bokarev;
 import org.apache.spark.SparkConf;
+import org.apache.spark.api.java.JavaPairRDD;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
+import scala.Tuple2;
 
 import java.util.List;
 
@@ -13,7 +15,14 @@ public class AirportApp {
         JavaRDD<String> flightsRDD = sc.textFile("/user/dima/664600583_T_ONTIME_sample.csv");
         JavaRDD<String> airportsRDD = sc.textFile("/user/dima/L_AIRPORT_ID.csv");
 
-        flightsRDD.map(AirportApp.);
+        //flightsRDD.map(AirportApp.map);
+        JavaPairRDD<String, Float> pairs = flightsRDD.mapToPair(
+                (String s) -> {
+                    String[] columns = s.split(",");
+                    String airportsPair = columns[]
+                    return new Tuple2<>()
+                }
+        )
 
 
 
