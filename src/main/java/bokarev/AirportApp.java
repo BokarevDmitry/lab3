@@ -20,7 +20,9 @@ public class AirportApp {
                 (String s) -> {
                     String[] columns = s.split(",");
                     String airportsPair = columns[11] + "-" + columns[14];
+                    String timeDelay = columns[18];
                     
+
                     return new Tuple2<>()
                 }
         )
