@@ -13,9 +13,10 @@ public class AirportApp {
         JavaRDD<String> flightsRDD = sc.textFile("/user/dima/664600583_T_ONTIME_sample.csv");
         JavaRDD<String> airportsRDD = sc.textFile("/user/dima/L_AIRPORT_ID.csv");
 
+        flightsRDD.map(AirportMapper)
 
 
-        conf.
+
         //List<String> flightsList = flightsRDD.collect();
         //List<String> airportList = airportsRDD.collect();
         //System.out.println(s.get(5));
