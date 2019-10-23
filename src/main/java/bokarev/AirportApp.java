@@ -26,7 +26,11 @@ public class AirportApp {
                 }
         );
 
-        pai
+        JavaPairRDD<String, Float> counts = pairs.reduceByKey(
+                (Float a, Float b) -> a + b
+        );
+
+        System.out.println(counts.collect());
 
 
         //List<String> flightsList = flightsRDD.collect();
