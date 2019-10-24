@@ -18,20 +18,22 @@ public class AirportApp {
         JavaRDD<String> airportsRDD = sc.textFile("/user/dima/L_AIRPORT_ID.csv");
 
         //flightsRDD.map(AirportApp.map);
-        JavaPairRDD<String, Float> pairs = flightsRDD.mapToPair(
+        JavaPairRDD<Tuple2, Float> pairs = flightsRDD.mapToPair(
                 (String s) -> {
                     String[] columns = s.split(",");
                     String airportsPair = columns[11] + "-" + columns[14];
+                    String airportOrigin = columns[11];
+                    String airportDest = columns[14];
                     if (!columns[18].contains(DESCRIPTION_LINE) && !columns[18].isEmpty() && Float.parseFloat(columns[18])>0) {
                         Float timeDelay = Float.parseFloat(columns[18]);
                         //String cancelStatus = columns[19];
-                        return new Tuple2<>(airportsPair, timeDelay);
+                        return new Tuple2<>(new Tuple2<>(airportOrigin, airportDest), timeDelay);
                     }
-                    return new Tuple2<>("", (float)0);
+                    return new Tuple2<>(new Tuple2<>("",""), (float)0);
                 }
         );
 
-        JavaPairRDD<String, Float> counts = pairs.reduceByKey(
+        JavaPairRDD<Tuple2, Float> counts = pairs.reduceByKey(
                 (Float a, Float b) -> Math.max(a,b)
         );
 
