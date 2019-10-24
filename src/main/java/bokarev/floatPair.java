@@ -14,8 +14,9 @@ public class floatPair implements Serializable {
         this.timeDelay = timeDelay;
         this.cancelStatus = cancelStatus;
         this.countRecords = 1;
-        if (timeDelay>0 && cancelStatus>0)
+        if (timeDelay>0 && cancelStatus>0) {
             this.countDelayOrCancel = 1;
+        } else this.countDelayOrCancel = 0;
     }
 
     public floatPair(Float timeDelay, Integer countRecords, Integer countDelayOrCancel) {
