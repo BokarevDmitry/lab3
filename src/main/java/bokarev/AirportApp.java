@@ -18,7 +18,7 @@ public class AirportApp {
         JavaRDD<String> airportsRDD = sc.textFile("/user/dima/L_AIRPORT_ID.csv");
 
         //flightsRDD.map(AirportApp.map);
-        JavaPairRDD<Tuple2, Float[]> pairs = flightsRDD.mapToPair(
+        JavaPairRDD<Tuple2, TextPair> pairs = flightsRDD.mapToPair(
                 (String s) -> {
                     String[] flightsInfo = CSVParser.parseFlights(s);
                     String airportOrigin = CSVParser.getAirportOrigin(flightsInfo);
@@ -30,7 +30,7 @@ public class AirportApp {
                         Float timeDelay = Float.parseFloat(CSVParser.getDelayTime(flightsInfo));
                         Float[] valueInfo = {timeDelay, cancelStatus};
                         return new Tuple2<>(new Tuple2<>(airportOrigin, airportDest),
-                                valueInfo);
+                                new TextPair(timeDelay, cancelStatus));
                     }
                     return new Tuple2<>(new Tuple2<>("",""), (float)0);
                 }
