@@ -8,6 +8,7 @@ import scala.Tuple2;
 public class AirportApp {
     public static void main(String[] args) throws Exception {
         String DESCRIPTION_LINE = "ARR_DELAY_NEW";
+        String CANCEL_LINE = "CANCELLED";
 
         SparkConf conf = new SparkConf().setAppName("AirportApp");
         JavaSparkContext sc = new JavaSparkContext(conf);
@@ -24,7 +25,10 @@ public class AirportApp {
                     Float cancelStatus = Float.parseFloat(CSVParser.getCancelStatus(flightsInfo));
 
 
-                    if (!flightsInfo[18].contains(DESCRIPTION_LINE) && !flightsInfo[18].isEmpty() && Float.parseFloat(flightsInfo[18])>0) {
+                    if (!flightsInfo[18].contains(DESCRIPTION_LINE)
+                            && !flightsInfo[19].contains(CANCEL_LINE)
+                            && !flightsInfo[18].isEmpty()
+                            && Float.parseFloat(flightsInfo[18])>0) {
                         Float timeDelay = Float.parseFloat(CSVParser.getDelayTime(flightsInfo));
                         Float[] valueInfo = {timeDelay, cancelStatus};
                         return new Tuple2<>(new Tuple2<>(airportOrigin, airportDest),
