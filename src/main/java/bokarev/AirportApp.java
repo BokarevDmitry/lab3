@@ -36,7 +36,7 @@ public class AirportApp {
 
         JavaPairRDD<Tuple2, floatPair> maxDelayTime = pairs.reduceByKey(
                 (floatPair a, floatPair b) -> {
-                    if (a.getCancelStatus()
+                    a.countDelayOrCancel
                     return Math.max(a,b);
                 }
         );
