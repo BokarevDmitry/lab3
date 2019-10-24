@@ -13,14 +13,15 @@ public class floatPair implements Serializable {
     public floatPair(Float timeDelay, Float cancelStatus) {
         this.timeDelay = timeDelay;
         this.cancelStatus = cancelStatus;
-        this.countRecords = 0;
+        this.countRecords = 1;
         if (timeDelay>0 && cancelStatus>0)
             this.countDelayOrCancel = 1;
     }
 
-    public floatPair(String timeDelay, String cancelStatus){
-        this.timeDelay =new Float(timeDelay);
-        this.cancelStatus =new Float(cancelStatus);
+    public floatPair(Float timeDelay, Integer countRecords, Integer countDelayOrCancel) {
+        this.timeDelay = timeDelay;
+        this.countRecords = countRecords;
+        this.countDelayOrCancel = countDelayOrCancel;
     }
 
     public Float getTimeDelay() {
