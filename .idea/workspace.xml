@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c7d1c822-c4b0-41da-8ab4-fbe534c0bcc8" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/bokarev/AirportApp.java" afterPath="$PROJECT_DIR$/src/main/java/bokarev/AirportApp.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/bokarev/maxAndPercentPair.java" afterPath="$PROJECT_DIR$/src/main/java/bokarev/maxAndPercentPair.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -25,7 +25,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AirportApp.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="AirportApp.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/bokarev/AirportApp.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="458">
@@ -57,11 +57,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="maxAndPercentPair.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="maxAndPercentPair.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/bokarev/maxAndPercentPair.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="216">
-              <caret line="12" column="44" lean-forward="false" selection-start-line="12" selection-start-column="44" selection-end-line="12" selection-end-column="44" />
+            <state relative-caret-position="252">
+              <caret line="14" column="1" lean-forward="true" selection-start-line="14" selection-start-column="1" selection-end-line="14" selection-end-column="1" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -116,8 +116,8 @@
         <option value="$PROJECT_DIR$/src/main/java/bokarev/CSVParser.java" />
         <option value="$PROJECT_DIR$/src/main/java/bokarev/TextPair.java" />
         <option value="$PROJECT_DIR$/src/main/java/bokarev/floatPair.java" />
-        <option value="$PROJECT_DIR$/src/main/java/bokarev/maxAndPercentPair.java" />
         <option value="$PROJECT_DIR$/src/main/java/bokarev/AirportApp.java" />
+        <option value="$PROJECT_DIR$/src/main/java/bokarev/maxAndPercentPair.java" />
       </list>
     </option>
   </component>
@@ -528,20 +528,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/bokarev/maxAndPercentPair.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/bokarev/AirportApp.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="12" column="44" lean-forward="false" selection-start-line="12" selection-start-column="44" selection-end-line="12" selection-end-column="44" />
+        <state relative-caret-position="458">
+          <caret line="48" column="71" lean-forward="false" selection-start-line="48" selection-start-column="71" selection-end-line="48" selection-end-column="71" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/bokarev/AirportApp.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/bokarev/maxAndPercentPair.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="458">
-          <caret line="48" column="71" lean-forward="false" selection-start-line="48" selection-start-column="71" selection-end-line="48" selection-end-column="71" />
+        <state relative-caret-position="252">
+          <caret line="14" column="1" lean-forward="true" selection-start-line="14" selection-start-column="1" selection-end-line="14" selection-end-column="1" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
