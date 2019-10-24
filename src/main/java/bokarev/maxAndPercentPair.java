@@ -10,6 +10,6 @@ public class maxAndPercentPair implements Serializable {
 
     public maxAndPercentPair(Float maxDelay, Integer countRecords, Integer countDelayOrCancel) {
         this.maxDelay = maxDelay;
-        this.percent = ((float)countDelayOrCancel/(float)countRecords)*100;
+        this.percent = (float)countDelayOrCancel*100/(float)countRecords;
     }
 }
