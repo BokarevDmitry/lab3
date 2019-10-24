@@ -22,7 +22,7 @@ public class AirportApp {
                     String[] flightsInfo = CSVParser.parseFlights(s);
                     String airportOrigin = CSVParser.getAirportOrigin(flightsInfo);
                     String airportDest = CSVParser.getAirportDest(flightsInfo);
-                    Float cancelStatus = Float.parseFloat(CSVParser.getCancelStatus(flightsInfo));
+                    
 
 
                     if (!flightsInfo[18].contains(DESCRIPTION_LINE)
@@ -30,7 +30,8 @@ public class AirportApp {
                             && !flightsInfo[18].isEmpty()
                             && Float.parseFloat(flightsInfo[18])>0) {
                         Float timeDelay = Float.parseFloat(CSVParser.getDelayTime(flightsInfo));
-                        Float[] valueInfo = {timeDelay, cancelStatus};
+                        Float cancelStatus = Float.parseFloat(CSVParser.getCancelStatus(flightsInfo));
+                        //Float[] valueInfo = {timeDelay, cancelStatus};
                         return new Tuple2<>(new Tuple2<>(airportOrigin, airportDest),
                                new floatPair (timeDelay, cancelStatus));
                     }
