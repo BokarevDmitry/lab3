@@ -52,7 +52,7 @@ public class AirportApp {
 
         System.out.println("LGSDHGKJDHFLDFDSLFDF");
         Tuple2<Tuple2, floatPair> el = maxDelayTime.collect().get(0);
-        System.out.println(System.out.println(el._1+ " "+ el._2.getCountRecords()+ " "+ el._2.getCountDelayOrCancel()););
+        System.out.println(el._1+ " "+ el._2.getCountRecords()+ " "+ el._2.getCountDelayOrCancel());
 
 
         JavaPairRDD<Tuple2, maxAndPercentPair> percentPairs = maxDelayTime.mapToPair(
