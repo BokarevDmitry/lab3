@@ -70,7 +70,7 @@ public class AirportApp {
                 (Tuple2<Tuple2, floatPair> a) -> new Tuple2<>(a._1, new Tuple2<>(a._2.getCountRecords(), a._2.getCountDelayOrCancel()))
         );
 
-        JavaPairRDD<Tuple2, Tuple2> lastPairs = maxDelayTime.mapToPair(
+        JavaPairRDD<Tuple2, Tuple2> lastPairs = pairs.mapToPair(
                 (Tuple2<Tuple2, floatPair> a) -> new Tuple2<>(a._1, new Tuple2<>(a._2.getCountRecords(), a._2.getCountDelayOrCancel()))
         );
 
