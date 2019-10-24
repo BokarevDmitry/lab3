@@ -26,16 +26,21 @@ public class AirportApp {
 
 
                     if (!flightsInfo[18].contains(DESCRIPTION_LINE)
-                            && !flightsInfo[19].contains(CANCEL_LINE)
-                            && !flightsInfo[18].isEmpty()
-                            && Float.parseFloat(flightsInfo[18])>0) {
-                        Float timeDelay = Float.parseFloat(CSVParser.getDelayTime(flightsInfo));
+                            && !flightsInfo[19].contains(CANCEL_LINE))
+                           // && !flightsInfo[18].isEmpty()
+                           // && Float.parseFloat(flightsInfo[18])>0)
+                    {
                         Float cancelStatus = Float.parseFloat(CSVParser.getCancelStatus(flightsInfo));
-                        //Float[] valueInfo = {timeDelay, cancelStatus};
-                        return new Tuple2<>(new Tuple2<>(airportOrigin, airportDest),
-                               new floatPair (timeDelay, cancelStatus));
+                        if (!flightsInfo[18].isEmpty()) {
+                            Float timeDelay = Float.parseFloat(CSVParser.getDelayTime(flightsInfo));
+                            return new Tuple2<>(new Tuple2<>(airportOrigin, airportDest),
+                                    new floatPair (timeDelay, cancelStatus));
+                         } else {
+                            return new Tuple2<>(new Tuple2<>(airportOrigin, airportDest),
+                                    new floatPair ((float)0, cancelStatus));
+                        }
+
                     }
-                    return new Tuple2<>(new Tuple2<>("",""), new floatPair ((float)0, (float)0));
                 }
         );
 
