@@ -59,7 +59,7 @@ public class AirportApp {
         );
 
 
-        System.out.println(percentPairs.collect());
+        System.out.println(last.collect());
 
 
         //List<String> flightsList = flightsRDD.collect();
