@@ -7,6 +7,7 @@ import java.util.Objects;
 public class floatPair implements Serializable {
     public  Float timeDelay;
     public  Float cancelStatus;
+    public
 
     public floatPair(Float timeDelay, Float second) {
         this.timeDelay = timeDelay;

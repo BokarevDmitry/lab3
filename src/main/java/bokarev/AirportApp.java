@@ -28,16 +28,20 @@ public class AirportApp {
                         Float timeDelay = Float.parseFloat(CSVParser.getDelayTime(flightsInfo));
                         Float[] valueInfo = {timeDelay, cancelStatus};
                         return new Tuple2<>(new Tuple2<>(airportOrigin, airportDest),
-                                new floatPair(timeDelay, cancelStatus));
+                               new floatPair (timeDelay, cancelStatus));
                     }
-                    return new Tuple2<>(new Tuple2<>("",""), new floatPair((float)0,(float)0.0));
+                    return new Tuple2<>(new Tuple2<>("",""), new floatPair ((float)0, (float)0));
                 }
         );
 
         JavaPairRDD<Tuple2, floatPair> maxDelayTime = pairs.reduceByKey(
-                (floatPair a, floatPair b) ->
-                        new floatPair(Math.max(a.getTimeDelay(),b.getTimeDelay()), )
+                (floatPair a, floatPair b) -> {
+                    if (a.getCancelStatus()
+                    return Math.max(a,b);
+                }
         );
+
+
 
 
 
