@@ -34,11 +34,13 @@ public class AirportApp {
                 }
         );
 
-        JavaPairRDD<Tuple2, Float> counts = pairs.reduceByKey(
+        JavaPairRDD<Tuple2, Float> maxDelayTime = pairs.reduceByKey(
                 (Float a, Float b) -> Math.max(a,b)
         );
 
-        System.out.println(counts.collect());
+        
+
+        System.out.println(maxDelayTime.collect());
 
 
         //List<String> flightsList = flightsRDD.collect();
