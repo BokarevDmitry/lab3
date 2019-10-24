@@ -45,7 +45,7 @@ public class AirportApp {
                 }
         );
 
-        JavaPairRDD<Tuple2, floatPair> percentPairs = maxDelayTime
+        JavaPairRDD<Tuple2, floatPair> percentPairs = maxDelayTime.map()
 
 
 
