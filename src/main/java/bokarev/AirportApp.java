@@ -22,9 +22,6 @@ public class AirportApp {
                     String[] flightsInfo = CSVParser.parseFlights(s);
                     String airportOrigin = CSVParser.getAirportOrigin(flightsInfo);
                     String airportDest = CSVParser.getAirportDest(flightsInfo);
-
-
-
                     if (!flightsInfo[18].contains(DESCRIPTION_LINE)
                             && !flightsInfo[19].contains(CANCEL_LINE))
                            // && !flightsInfo[18].isEmpty()
@@ -41,6 +38,8 @@ public class AirportApp {
                         }
 
                     }
+                    return new Tuple2<>(new Tuple2<>("",""),
+                            new floatPair ((float)0, (float)0));
                 }
         );
 
