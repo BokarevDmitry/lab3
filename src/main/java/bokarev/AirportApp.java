@@ -22,7 +22,7 @@ public class AirportApp {
                     String[] flightsInfo = CSVParser.parseFlights(s);
                     String airportOrigin = CSVParser.getAirportOrigin(flightsInfo);
                     String airportDest = CSVParser.getAirportDest(flightsInfo);
-                    
+
 
 
                     if (!flightsInfo[18].contains(DESCRIPTION_LINE)
@@ -54,6 +54,9 @@ public class AirportApp {
                 (Tuple2<Tuple2, floatPair> a) -> new Tuple2<>(a._1, new maxAndPercentPair(a._2.getTimeDelay(), a._2.getCountRecords(), a._2.getCountDelayOrCancel()))
         );
 
+        JavaPairRDD<Tuple2, Tuple2> last = percentPairs.mapToPair(
+                (Tuple2<Tuple2, maxAndPercentPair> a) -> new Tuple2<>(a._1, new Tuple2<>(a._2.maxDelay, a._2.percent))
+        );
 
 
         System.out.println(percentPairs.collect());
