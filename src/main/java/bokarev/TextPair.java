@@ -9,7 +9,7 @@ import org.apache.hadoop.io.Text;
 import org.apache.hadoop.io.WritableComparable;
 
 
-public class TextPair implements WritableComparable<TextPair>{
+public class TextPair, Serializable {
     public  Float timeDelay;
     public  Float cancelStatus;
 
