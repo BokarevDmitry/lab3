@@ -15,8 +15,9 @@ public class CSVParser {
     public static String getAirportName (String[] s) { return s[1];}
 
     public static String getAirportCode (String[] s) {return s[14];}
-    public static String getDelayTime (String[] s) {return s[18];}
 
     public static String getAirportOrigin (String[] s) {return s[11];}
     public static String getAirportDest (String[] s) {return s[14];}
+    public static String getDelayTime (String[] s) {return s[18];}
+    public static String getCancelStatus (String[] s) {return s[19];}
 }
