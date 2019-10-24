@@ -20,10 +20,10 @@ public class AirportApp {
         //flightsRDD.map(AirportApp.map);
         JavaPairRDD<Tuple2, Float> pairs = flightsRDD.mapToPair(
                 (String s) -> {
-                    String[] columns = s.split(",");
-                    String airportsPair = columns[11] + "-" + columns[14];
-                    String airportOrigin = columns[11];
-                    String airportDest = columns[14];
+                    String[] columns = CSVParser.parseFlights(s);
+                    //String airportsPair = columns[11] + "-" + columns[14];
+                    String airportOrigin = CSVParser.getAirportOrigin(columns);
+                    String airportDest = CSVParser.getAirportDest(columns);
                     if (!columns[18].contains(DESCRIPTION_LINE) && !columns[18].isEmpty() && Float.parseFloat(columns[18])>0) {
                         Float timeDelay = Float.parseFloat(columns[18]);
                         //String cancelStatus = columns[19];
