@@ -5,8 +5,6 @@ import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
 import scala.Tuple2;
 
-import java.util.List;
-
 public class AirportApp {
     public static void main(String[] args) throws Exception {
         String DESCRIPTION_LINE = "ARR_DELAY_NEW";
@@ -18,7 +16,7 @@ public class AirportApp {
         JavaRDD<String> airportsRDD = sc.textFile("/user/dima/L_AIRPORT_ID.csv");
 
         //flightsRDD.map(AirportApp.map);
-        JavaPairRDD<Tuple2, TextPair> pairs = flightsRDD.mapToPair(
+        JavaPairRDD<Tuple2, floatPair> pairs = flightsRDD.mapToPair(
                 (String s) -> {
                     String[] flightsInfo = CSVParser.parseFlights(s);
                     String airportOrigin = CSVParser.getAirportOrigin(flightsInfo);
@@ -30,14 +28,15 @@ public class AirportApp {
                         Float timeDelay = Float.parseFloat(CSVParser.getDelayTime(flightsInfo));
                         Float[] valueInfo = {timeDelay, cancelStatus};
                         return new Tuple2<>(new Tuple2<>(airportOrigin, airportDest),
-                                new TextPair(timeDelay, cancelStatus));
+                                new floatPair(timeDelay, cancelStatus));
                     }
-                    return new Tuple2<>(new Tuple2<>("",""), (float)0);
+                    return new Tuple2<>(new Tuple2<>("",""), new floatPair((float)0,(float)0.0));
                 }
         );
 
-        JavaPairRDD<Tuple2, Float> maxDelayTime = pairs.reduceByKey(
-                (Float a, Float b) -> Math.max(a,b)
+        JavaPairRDD<Tuple2, floatPair> maxDelayTime = pairs.reduceByKey(
+                (floatPair a, floatPair b) ->
+                        new floatPair(Math.max(a.getTimeDelay(),b.getTimeDelay()), )
         );
 
 

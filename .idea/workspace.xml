@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c7d1c822-c4b0-41da-8ab4-fbe534c0bcc8" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/bokarev/TextPair.java" afterPath="$PROJECT_DIR$/src/main/java/bokarev/TextPair.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/bokarev/AirportApp.java" afterPath="$PROJECT_DIR$/src/main/java/bokarev/AirportApp.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/bokarev/TextPair.java" afterPath="$PROJECT_DIR$/src/main/java/bokarev/floatPair.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -28,8 +29,8 @@
       <file leaf-file-name="AirportApp.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/bokarev/AirportApp.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="522">
-              <caret line="32" column="68" lean-forward="false" selection-start-line="32" selection-start-column="68" selection-end-line="32" selection-end-column="68" />
+            <state relative-caret-position="666">
+              <caret line="38" column="83" lean-forward="false" selection-start-line="38" selection-start-column="83" selection-end-line="38" selection-end-column="83" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -37,20 +38,20 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TextPair.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/bokarev/TextPair.java">
+      <file leaf-file-name="floatPair.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/bokarev/floatPair.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="11" column="36" lean-forward="false" selection-start-line="11" selection-start-column="36" selection-end-line="11" selection-end-column="36" />
+            <state relative-caret-position="288">
+              <caret line="17" column="7" lean-forward="true" selection-start-line="17" selection-start-column="7" selection-end-line="17" selection-end-column="7" />
               <folding>
-                <element signature="e#627#628#0" expanded="true" />
-                <element signature="e#659#660#0" expanded="true" />
-                <element signature="e#697#698#0" expanded="true" />
-                <element signature="e#732#733#0" expanded="true" />
-                <element signature="e#1113#1114#0" expanded="true" />
-                <element signature="e#1173#1174#0" expanded="true" />
-                <element signature="e#1219#1220#0" expanded="true" />
-                <element signature="e#1271#1272#0" expanded="true" />
+                <element signature="e#505#506#0" expanded="true" />
+                <element signature="e#537#538#0" expanded="true" />
+                <element signature="e#575#576#0" expanded="true" />
+                <element signature="e#610#611#0" expanded="true" />
+                <element signature="e#993#994#0" expanded="true" />
+                <element signature="e#1053#1054#0" expanded="true" />
+                <element signature="e#1099#1100#0" expanded="true" />
+                <element signature="e#1151#1152#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -101,8 +102,9 @@
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/bokarev/AirportMapper.java" />
         <option value="$PROJECT_DIR$/src/main/java/bokarev/CSVParser.java" />
-        <option value="$PROJECT_DIR$/src/main/java/bokarev/AirportApp.java" />
         <option value="$PROJECT_DIR$/src/main/java/bokarev/TextPair.java" />
+        <option value="$PROJECT_DIR$/src/main/java/bokarev/floatPair.java" />
+        <option value="$PROJECT_DIR$/src/main/java/bokarev/AirportApp.java" />
       </list>
     </option>
   </component>
@@ -306,7 +308,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.245" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.074" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -495,27 +497,27 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/bokarev/TextPair.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/bokarev/floatPair.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="11" column="36" lean-forward="false" selection-start-line="11" selection-start-column="36" selection-end-line="11" selection-end-column="36" />
+        <state relative-caret-position="288">
+          <caret line="17" column="7" lean-forward="true" selection-start-line="17" selection-start-column="7" selection-end-line="17" selection-end-column="7" />
           <folding>
-            <element signature="e#627#628#0" expanded="true" />
-            <element signature="e#659#660#0" expanded="true" />
-            <element signature="e#697#698#0" expanded="true" />
-            <element signature="e#732#733#0" expanded="true" />
-            <element signature="e#1113#1114#0" expanded="true" />
-            <element signature="e#1173#1174#0" expanded="true" />
-            <element signature="e#1219#1220#0" expanded="true" />
-            <element signature="e#1271#1272#0" expanded="true" />
+            <element signature="e#505#506#0" expanded="true" />
+            <element signature="e#537#538#0" expanded="true" />
+            <element signature="e#575#576#0" expanded="true" />
+            <element signature="e#610#611#0" expanded="true" />
+            <element signature="e#993#994#0" expanded="true" />
+            <element signature="e#1053#1054#0" expanded="true" />
+            <element signature="e#1099#1100#0" expanded="true" />
+            <element signature="e#1151#1152#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/bokarev/AirportApp.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="522">
-          <caret line="32" column="68" lean-forward="false" selection-start-line="32" selection-start-column="68" selection-end-line="32" selection-end-column="68" />
+        <state relative-caret-position="666">
+          <caret line="38" column="83" lean-forward="false" selection-start-line="38" selection-start-column="83" selection-end-line="38" selection-end-column="83" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

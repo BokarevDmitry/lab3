@@ -1,24 +1,19 @@
 package bokarev;
 
-import java.io.DataInput;
-import java.io.DataOutput;
-import java.io.IOException;
+import java.io.Serializable;
 import java.util.Objects;
 
-import org.apache.hadoop.io.Text;
-import org.apache.hadoop.io.WritableComparable;
 
-
-public class TextPair, Serializable {
+public class floatPair implements Serializable {
     public  Float timeDelay;
     public  Float cancelStatus;
 
-    public TextPair(Float timeDelay, Float second) {
+    public floatPair(Float timeDelay, Float second) {
         this.timeDelay = timeDelay;
         this.cancelStatus = second;
     }
 
-    public TextPair(String timeDelay, String second){
+    public floatPair(String timeDelay, String second){
         this.timeDelay =new Float(timeDelay);
         this.cancelStatus =new Float(second);
     }
@@ -36,7 +31,7 @@ public class TextPair, Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        TextPair textPair = (TextPair) o;
+        floatPair textPair = (floatPair) o;
         return Objects.equals(timeDelay, textPair.timeDelay) &&
                 Objects.equals(cancelStatus, textPair.cancelStatus);
     }
