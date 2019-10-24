@@ -70,7 +70,11 @@ public class AirportApp {
                 (Tuple2<Tuple2, floatPair> a) -> new Tuple2<>(a._1, new Tuple2<>(a._2.getCountRecords(), a._2.getCountDelayOrCancel()))
         );
 
-        System.out.println(last2.collect());
+        JavaPairRDD<Tuple2, Tuple2> lastPairs = maxDelayTime.mapToPair(
+                (Tuple2<Tuple2, floatPair> a) -> new Tuple2<>(a._1, new Tuple2<>(a._2.getCountRecords(), a._2.getCountDelayOrCancel()))
+        );
+
+        System.out.println(lastPairs.collect());
 
 
         //List<String> flightsList = flightsRDD.collect();
