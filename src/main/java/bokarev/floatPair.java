@@ -31,4 +31,12 @@ public class floatPair implements Serializable {
     public Float getCancelStatus() {
         return cancelStatus;
     }
+
+    public Integer getCountRecords() {
+        return countRecords;
+    }
+
+    public Integer getCountDelayOrCancel() {
+        return countDelayOrCancel;
+    }
 }

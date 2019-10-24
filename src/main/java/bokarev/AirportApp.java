@@ -45,13 +45,13 @@ public class AirportApp {
                 }
         );
 
-        JavaPairRDD<Tuple2, floatPair> percentPairs = maxDelayTime.map()
+        JavaPairRDD<Tuple2, maxAndPercentPair> percentPairs = maxDelayTime.mapToPair(
+                (Tuple2<Tuple2, floatPair> a) -> new Tuple2<>(a._1, new maxAndPercentPair(a._2.getTimeDelay(), a._2.getCountRecords(), a._2.getCountDelayOrCancel()))
+        );
 
 
 
-
-
-        System.out.println(maxDelayTime.collect());
+        System.out.println(percentPairs.collect());
 
 
         //List<String> flightsList = flightsRDD.collect();
