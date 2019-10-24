@@ -46,7 +46,7 @@ public class AirportApp {
                     //return Math.max(a,b);
                     return new floatPair( Math.max(a.getTimeDelay(), b.getTimeDelay()),
                             a.countRecords++,
-                            a.countDelayOrCancel + b.countDelayOrCancel);
+                            a.countDelayOrCancel++);
                 }
         );
 
