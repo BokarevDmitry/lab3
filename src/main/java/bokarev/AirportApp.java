@@ -34,7 +34,7 @@ public class AirportApp {
 
         Map<String, String> stringAirportDataMap = airportLib.collectAsMap();
         final Broadcast<Map<String, String>> airportsBroadcasted = sc.broadcast(stringAirportDataMap);
-        
+
         JavaPairRDD<Tuple2, floatPair> pairs = flightsRDD.mapToPair(
                 (String s) -> {
                     String[] flightsInfo = CSVParser.parseFlights(s);
@@ -63,6 +63,7 @@ public class AirportApp {
 
         JavaPairRDD<Tuple2, floatPair> maxDelayTime = pairs.reduceByKey(
                 (floatPair a, floatPair b) -> {
+                    accum.add(1);
                     return new floatPair( Math.max(a.getTimeDelay(), b.getTimeDelay()),
                             a.countRecords+b.countRecords,
                             a.countDelayOrCancel + b.countDelayOrCancel);
