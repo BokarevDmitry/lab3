@@ -28,9 +28,9 @@ public class AirportApp {
 
         String headerF = flightsRDD.first();
         String headerA = airportsRDD.first();
-
         flightsRDD.filter(row -> !row.equals(headerF));
-        flightsRDD.filter(row -> !row.equals(headerA));
+        airportsRDD.filter(row -> !row.equals(headerA));
+
 
         //CSVParser.removeHeaders(flightsRDD);
         //CSVParser.removeHeaders(airportsRDD);
