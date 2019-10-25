@@ -3,6 +3,7 @@ import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaPairRDD;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
+import org.apache.spark.broadcast.Broadcast;
 import scala.Tuple2;
 
 import java.util.Map;
@@ -77,7 +78,14 @@ public class AirportApp {
                 }
         );
 
-        Map<String, String> airportMap = airportLib.collectAsMap();
+        Map<String, String> stringAirportDataMap = airportLib.collectAsMap();
 
+        final Broadcast<Map<String, String>> airportsBroadcasted = sc.broadcast(stringAirportDataMap);
+
+        JavaPairRDD<Tuple2, Tuple2> InfoWithAirports = last.mapToPair(
+                (Tuple2<Tuple2, Tuple2> a) -> new Tuple2<>(
+                        new Tuple2<>(a._1._1),
+                        a._2)
+        );
     }
 }
