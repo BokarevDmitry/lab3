@@ -5,11 +5,11 @@ import java.util.Objects;
 
 
 public class floatPair implements Serializable {
-    public  Float timeDelay;
-    public  Float cancelStatus;
-    public  Integer countRecords;
-    public  Integer countDelayOrCancel;
-    public  Float percent;
+    private   Float timeDelay;
+    private   Float cancelStatus;
+    private   Integer countRecords;
+    private   Integer countDelayOrCancel;
+    private   Float percent;
 
     public floatPair(Float timeDelay, Float cancelStatus) {
         this.timeDelay = timeDelay;
