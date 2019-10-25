@@ -31,6 +31,7 @@ public class AirportApp {
         flightsRDD.filter(row -> !row.equals(headerF));
         airportsRDD.filter(row -> !row.equals(headerA));
 
+        
 
         //CSVParser.removeHeaders(flightsRDD);
         //CSVParser.removeHeaders(airportsRDD);
