@@ -81,7 +81,7 @@ public class AirportApp {
         System.out.println(last.collect());
 
 
-        airportsBroadcasted.v
+        
 
 
 //        JavaPairRDD<Tuple2, Tuple2> InfoWithAirports = last.mapToPair(
