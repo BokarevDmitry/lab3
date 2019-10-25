@@ -3,10 +3,9 @@ import org.apache.hadoop.io.Text;
 
 public class CSVParser {
     public static String[] parseFlights(String s) {
-        return s.toString().split(",");
+        return s.split(",");
     }
-    public static String[] parseAirports (Text s) {
-        return s.toString().split("\",\"");
+    public static String[] parseAirports (String s) { return s.split("\",\"");
     }
 
     public static String removeQuotes (String s) {return s.replaceAll("[\"]", "");}

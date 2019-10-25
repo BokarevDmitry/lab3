@@ -9,6 +9,7 @@ public class AirportApp {
     public static void main(String[] args) throws Exception {
         String DESCRIPTION_LINE = "ARR_DELAY_NEW";
         String CANCEL_LINE = "CANCELLED";
+        String CODE_LINE = "Code";
 
         SparkConf conf = new SparkConf().setAppName("AirportApp");
         JavaSparkContext sc = new JavaSparkContext(conf);
@@ -62,7 +63,19 @@ public class AirportApp {
         );
 
         System.out.println(last.collect());
-        
+
+        JavaPairRDD<Float,String> airportLib = airportsRDD.mapToPair(
+                (String s) -> {
+                    String airportsInfo[] = CSVParser.parseAirports(s);
+                    String airportCode = CSVParser.getAirCode(airportsInfo);
+
+                    if (!airportCode.contains(DESCRIPTION_LINE)) {
+                        String airportName = CSVParser.getAirportName(airportsInfo);
+
+                    }
+                }
+        );
+
         int mas = airportsRDD.collectAsMap()
 
     }
