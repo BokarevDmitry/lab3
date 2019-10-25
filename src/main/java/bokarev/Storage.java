@@ -2,14 +2,14 @@ package bokarev;
 
 import java.io.Serializable;
 
-public class floatPair implements Serializable {
+public class Storage implements Serializable {
     private   Float timeDelay;
     private   Float cancelStatus;
     private   Integer countRecords;
     private   Integer countDelayOrCancel;
     private   Float percent;
 
-    public floatPair(String timeDelay, Float cancelStatus) {
+    public Storage(String timeDelay, Float cancelStatus) {
         if (!timeDelay.isEmpty()) {
             this.timeDelay = Float.parseFloat(timeDelay);
         } else this.timeDelay = (float)0;
@@ -20,11 +20,13 @@ public class floatPair implements Serializable {
         } else this.countDelayOrCancel = 0;
     }
 
-    public floatPair(Float timeDelay, Integer countRecords, Integer countDelayOrCancel) {
+    public Storage(Float timeDelay, Integer countRecords, Integer countDelayOrCancel) {
         this.timeDelay = timeDelay;
         this.countRecords = countRecords;
         this.countDelayOrCancel = countDelayOrCancel;
-        this.percent = (float)countDelayOrCancel*100/(float)countRecords;
+        if (this.countRecords != 0) {
+            this.percent = (float) countDelayOrCancel * 100 / (float) countRecords;
+        } else this.percent = (float)0;
     }
 
     public Float getTimeDelay() {

@@ -29,22 +29,21 @@ public class Mappers {
                     String airportOrigin = CSVParser.getAirportOrigin(flightsInfo);
                     String airportDest = CSVParser.getAirportDest(flightsInfo);
                     Float cancelStatus = Float.parseFloat(CSVParser.getCancelStatus(flightsInfo));
-
                     String timeDelay = CSVParser.getDelayTime(flightsInfo);
                     return new Tuple2<>(new Tuple2<>(
                             airportsBroadcasted.value().get(airportOrigin),
                             airportsBroadcasted.value().get(airportDest)),
-                            new floatPair (timeDelay, cancelStatus));
+                            new Storage(timeDelay, cancelStatus));
                 }
-        )       .reduceByKey(
-                (floatPair a, floatPair b) -> new floatPair(
+        )
+                .reduceByKey(
+                (Storage a, Storage b) -> new Storage(
                         Math.max(a.getTimeDelay(), b.getTimeDelay()),
                         a.getCountRecords()+b.getCountRecords(),
                         a.getCountDelayOrCancel() + b.getCountDelayOrCancel()))
                 .mapToPair(
-                        (Tuple2<Tuple2<String,String>, floatPair> a) -> new Tuple2<>(
+                        (Tuple2<Tuple2<String,String>, Storage> a) -> new Tuple2<>(
                                 a._1,
                                 new Tuple2<>(a._2.getTimeDelay(), a._2.getPercent())));
     }
-
 }
