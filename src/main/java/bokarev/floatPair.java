@@ -11,11 +11,13 @@ public class floatPair implements Serializable {
     private   Integer countDelayOrCancel;
     private   Float percent;
 
-    public floatPair(Float timeDelay, Float cancelStatus) {
-        this.timeDelay = timeDelay;
+    public floatPair(String timeDelay, Float cancelStatus) {
+        if (!timeDelay.isEmpty()) {
+            this.timeDelay = Float.parseFloat(timeDelay);
+        } else this.timeDelay = (float)0;
         this.cancelStatus = cancelStatus;
         this.countRecords = 1;
-        if (timeDelay>=1.0 || cancelStatus==1.0) {
+        if (this.timeDelay>=1.0 || this.cancelStatus==1.0) {
             this.countDelayOrCancel = 1;
         } else this.countDelayOrCancel = 0;
     }

@@ -39,18 +39,11 @@ public class AirportApp {
                     String airportDest = CSVParser.getAirportDest(flightsInfo);
                     Float cancelStatus = Float.parseFloat(CSVParser.getCancelStatus(flightsInfo));
 
-                    if (!flightsInfo[18].isEmpty()) {
-                        Float timeDelay = Float.parseFloat(CSVParser.getDelayTime(flightsInfo));
-                        return new Tuple2<>(new Tuple2<>(
-                                airportsBroadcasted.value().get(airportOrigin),
-                                airportsBroadcasted.value().get(airportDest)),
-                                new floatPair (timeDelay, cancelStatus));
-                    }   else {
-                        return new Tuple2<>(new Tuple2<>(
-                                airportsBroadcasted.value().get(airportOrigin),
-                                airportsBroadcasted.value().get(airportDest)),
-                                new floatPair ((float)0, cancelStatus));
-                        }
+                    String timeDelay = CSVParser.getDelayTime(flightsInfo);
+                    return new Tuple2<>(new Tuple2<>(
+                            airportsBroadcasted.value().get(airportOrigin),
+                            airportsBroadcasted.value().get(airportDest)),
+                            new floatPair (timeDelay, cancelStatus));
                 }
         )       .reduceByKey(
                         (floatPair a, floatPair b) -> new floatPair(
@@ -63,8 +56,8 @@ public class AirportApp {
                                 new Tuple2<>(a._2.getTimeDelay(), a._2.getPercent())));
 
 
-        JavaPairRDD<Tuple2, Tuple2> last = Reducer.reduceAirports(pairs);
+        //JavaPairRDD<Tuple2, Tuple2> last = Reducer.reduceAirports(pairs);
         //System.out.println(last.collect());
-        last.saveAsTextFile("/user/dima/output");
+        pairs.saveAsTextFile("/user/dima/output");
     }
 }
