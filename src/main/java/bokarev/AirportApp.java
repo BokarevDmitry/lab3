@@ -60,7 +60,9 @@ public class AirportApp {
                                 airportsBroadcasted.value().get(airportDest)),
                                 new floatPair (timeDelay, cancelStatus));
                     }   else {
-                        return new Tuple2<>(new Tuple2<>(airportOrigin, airportDest),
+                        return new Tuple2<>(new Tuple2<>(
+                                airportsBroadcasted.value().get(airportOrigin),
+                                airportsBroadcasted.value().get(airportDest)),
                                 new floatPair ((float)0, cancelStatus));
                         }
                 }
