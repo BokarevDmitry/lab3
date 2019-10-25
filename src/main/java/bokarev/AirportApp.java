@@ -29,35 +29,10 @@ public class AirportApp {
         CSVParser.removeHeaders(flightsRDD);
         CSVParser.removeHeaders(airportsRDD);
 
-        JavaPairRDD<String,String> airportDict = AirportMapper.mapAirports(airportsRDD);
+        JavaPairRDD<String,String> airportDict = Mappers.mapAirports(airportsRDD);
         final Broadcast<Map<String, String>> airportsBroadcasted = sc.broadcast(airportDict.collectAsMap());
 
-        JavaPairRDD<Tuple2, Tuple2> pairs = flightsRDD.mapToPair(
-                (String s) -> {
-                    String[] flightsInfo = CSVParser.parseFlights(s);
-                    String airportOrigin = CSVParser.getAirportOrigin(flightsInfo);
-                    String airportDest = CSVParser.getAirportDest(flightsInfo);
-                    Float cancelStatus = Float.parseFloat(CSVParser.getCancelStatus(flightsInfo));
-
-                    String timeDelay = CSVParser.getDelayTime(flightsInfo);
-                    return new Tuple2<>(new Tuple2<>(
-                            airportsBroadcasted.value().get(airportOrigin),
-                            airportsBroadcasted.value().get(airportDest)),
-                            new floatPair (timeDelay, cancelStatus));
-                }
-        )       .reduceByKey(
-                        (floatPair a, floatPair b) -> new floatPair(
-                        Math.max(a.getTimeDelay(), b.getTimeDelay()),
-                        a.getCountRecords()+b.getCountRecords(),
-                        a.getCountDelayOrCancel() + b.getCountDelayOrCancel()))
-                .mapToPair(
-                        (Tuple2<Tuple2<String,String>, floatPair> a) -> new Tuple2<>(
-                                a._1,
-                                new Tuple2<>(a._2.getTimeDelay(), a._2.getPercent())));
-
-
-        //JavaPairRDD<Tuple2, Tuple2> last = Reducer.reduceAirports(pairs);
-        //System.out.println(last.collect());
-        pairs.saveAsTextFile("/user/dima/output");
+        JavaPairRDD<Tuple2, Tuple2> flightsInfo = Mappers.mapFlights(flightsRDD, airportsBroadcasted);
+        flightsInfo.saveAsTextFile("/user/dima/output");
     }
 }

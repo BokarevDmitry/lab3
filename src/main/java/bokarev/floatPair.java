@@ -1,8 +1,6 @@
 package bokarev;
 
 import java.io.Serializable;
-import java.util.Objects;
-
 
 public class floatPair implements Serializable {
     private   Float timeDelay;
