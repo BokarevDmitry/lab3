@@ -11,11 +11,11 @@ public class AirportMapper {
 
     //@Override
     protected void map(LongWritable key, Text value, Mapper.Context context) throws IOException, InterruptedException {
-        String[] columns = CSVParser.parseAirports(value);
-        String airportCode = CSVParser.getAirCode(columns);
-
-        if (!airportCode.contains(DESCRIPTION_LINE)) {
-            String airportName = CSVParser.getAirportName(columns);
-        }
+//        String[] columns = CSVParser.parseAirports(value);
+//        String airportCode = CSVParser.getAirCode(columns);
+//
+//        if (!airportCode.contains(DESCRIPTION_LINE)) {
+//            String airportName = CSVParser.getAirportName(columns);
+//        }
     }
 }
