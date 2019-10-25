@@ -34,8 +34,8 @@ public class AirportApp {
                 }
         );
 
-        Map<String, String> stringAirportDataMap = airportLib.collectAsMap();
-        final Broadcast<Map<String, String>> airportsBroadcasted = sc.broadcast(stringAirportDataMap);
+        //Map<String, String> stringAirportDataMap = airportLib.collectAsMap();
+        final Broadcast<Map<String, String>> airportsBroadcasted = sc.broadcast(airportLib.collectAsMap());
 
         JavaPairRDD<Tuple2, floatPair> pairs = flightsRDD.mapToPair(
                 (String s) -> {
@@ -45,17 +45,16 @@ public class AirportApp {
                     Float cancelStatus = Float.parseFloat(CSVParser.getCancelStatus(flightsInfo));
                     if (!flightsInfo[18].isEmpty()) {
                         Float timeDelay = Float.parseFloat(CSVParser.getDelayTime(flightsInfo));
-                        return new Tuple2<>(new Tuple2<>(airportOrigin, airportDest),
+                        return new Tuple2<>(new Tuple2<>(
+                                airportsBroadcasted.value().get(airportOrigin),
+                                airportsBroadcasted.value().get(airportDest)),
                                 new floatPair (timeDelay, cancelStatus));
                     }   else {
                         return new Tuple2<>(new Tuple2<>(airportOrigin, airportDest),
                                 new floatPair ((float)0, cancelStatus));
                         }
                 }
-        )
-                .map((Tuple2<Tuple2<String, String>,floatPair> s) ->
-                        new Tuple2<>(airportsBroadcasted.value(s._1),
-                                                airportsBroadcasted.value(s._2)));
+        );
 
         //final org.apache.spark.util.LongAccumulator accum = sc.sc().longAccumulator();
 
