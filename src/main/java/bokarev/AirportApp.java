@@ -21,7 +21,8 @@ public class AirportApp {
         JavaRDD<String> flightsRDD = sc.textFile("/user/dima/664600583_T_ONTIME_sample.csv");
         JavaRDD<String> airportsRDD = sc.textFile("/user/dima/L_AIRPORT_ID.csv");
 
-        
+        LongAccumulator jsc = new LongAccumulator();
+
         final LongAccumulator total =
                 jsc.sc().longAccumulator();
 
