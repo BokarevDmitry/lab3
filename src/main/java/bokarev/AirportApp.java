@@ -64,19 +64,18 @@ public class AirportApp {
 
         System.out.println(last.collect());
 
-        JavaPairRDD<Float,String> airportLib = airportsRDD.mapToPair(
+        JavaPairRDD<String,String> airportLib = airportsRDD.mapToPair(
                 (String s) -> {
                     String airportsInfo[] = CSVParser.parseAirports(s);
                     String airportCode = CSVParser.getAirCode(airportsInfo);
-
-                    if (!airportCode.contains(DESCRIPTION_LINE)) {
-                        String airportName = CSVParser.getAirportName(airportsInfo);
-
-                    }
+                    String airportName = CSVParser.getAirportName(airportsInfo);
+                    return new Tuple2<>(
+                            CSVParser.removeQuotes(airportCode),
+                            CSVParser.removeQuotes(airportName));
                 }
         );
 
-        int mas = airportsRDD.collectAsMap()
+        int mas = airportLib.collectAsMap()
 
     }
 }

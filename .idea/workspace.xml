@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="c7d1c822-c4b0-41da-8ab4-fbe534c0bcc8" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/src/main/java/bokarev/AirportApp.java" afterPath="$PROJECT_DIR$/src/main/java/bokarev/AirportApp.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/bokarev/CSVParser.java" afterPath="$PROJECT_DIR$/src/main/java/bokarev/CSVParser.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -29,8 +28,8 @@
       <file leaf-file-name="AirportApp.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/bokarev/AirportApp.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="668">
-              <caret line="73" column="0" lean-forward="false" selection-start-line="73" selection-start-column="0" selection-end-line="73" selection-end-column="0" />
+            <state relative-caret-position="776">
+              <caret line="77" column="42" lean-forward="true" selection-start-line="77" selection-start-column="42" selection-end-line="77" selection-end-column="42" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -669,8 +668,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/bokarev/AirportApp.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="668">
-          <caret line="73" column="0" lean-forward="false" selection-start-line="73" selection-start-column="0" selection-end-line="73" selection-end-column="0" />
+        <state relative-caret-position="776">
+          <caret line="77" column="42" lean-forward="true" selection-start-line="77" selection-start-column="42" selection-end-line="77" selection-end-column="42" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
