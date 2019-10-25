@@ -84,7 +84,7 @@ public class AirportApp {
 
         JavaPairRDD<Tuple2, Tuple2> InfoWithAirports = last.mapToPair(
                 (Tuple2<Tuple2, Tuple2> a) -> new Tuple2<>(
-                        new Tuple2<>(a._1._1),
+                        new Tuple2<>(stringAirportDataMap.a._1._1),
                         a._2)
         );
     }
