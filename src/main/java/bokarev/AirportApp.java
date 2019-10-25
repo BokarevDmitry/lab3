@@ -24,7 +24,7 @@ public class AirportApp {
         LongAccumulator jsc = new LongAccumulator();
 
         final LongAccumulator total =
-                jsc.sc().longAccumulator();
+                sc.sc().longAccumulator();
 
         JavaPairRDD<String,String> airportLib = airportsRDD.mapToPair(
                 (String s) -> {
