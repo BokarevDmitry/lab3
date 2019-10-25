@@ -7,6 +7,7 @@ import org.apache.spark.broadcast.Broadcast;
 import scala.Tuple2;
 
 import java.util.Map;
+import java.util.concurrent.atomic.LongAccumulator;
 
 public class AirportApp {
     public static void main(String[] args) throws Exception {
@@ -20,6 +21,9 @@ public class AirportApp {
         JavaRDD<String> flightsRDD = sc.textFile("/user/dima/664600583_T_ONTIME_sample.csv");
         JavaRDD<String> airportsRDD = sc.textFile("/user/dima/L_AIRPORT_ID.csv");
 
+        
+        final LongAccumulator total =
+                jsc.sc().longAccumulator();
 
         JavaPairRDD<String,String> airportLib = airportsRDD.mapToPair(
                 (String s) -> {
@@ -81,7 +85,7 @@ public class AirportApp {
         System.out.println(last.collect());
 
 
-        
+
 
 
 //        JavaPairRDD<Tuple2, Tuple2> InfoWithAirports = last.mapToPair(
