@@ -78,7 +78,7 @@ public class AirportApp {
         );
 
         System.out.println(last.collect());
-        last.saveAsTextFile("/output");
+        last.saveAsTextFile("/user/dima/output");
 
 
 
