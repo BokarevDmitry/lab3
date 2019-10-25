@@ -1,4 +1,7 @@
 package bokarev;
+import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.fs.FileSystem;
+import org.apache.hadoop.fs.Path;
 import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaPairRDD;
 import org.apache.spark.api.java.JavaRDD;
@@ -11,6 +14,13 @@ import org.apache.spark.util.LongAccumulator;
 
 public class AirportApp {
     public static void main(String[] args) throws Exception {
+
+        Configuration config = new Configuration();
+        FileSystem hdfs = FileSystem.get(config);
+        if (hdfs.exists(new Path("hdfs://localhost:9000/user/dima/output"))) {
+            hdfs.delete(new Path("hdfs://localhost:9000/user/dima/output"), true);
+        }
+
         SparkConf conf = new SparkConf().setAppName("AirportApp");
         JavaSparkContext sc = new JavaSparkContext(conf);
 
