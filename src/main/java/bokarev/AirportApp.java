@@ -62,8 +62,8 @@ public class AirportApp {
         );
 
         System.out.println(last.collect());
-
         
+        int mas = airportsRDD.collectAsMap()
 
     }
 }
