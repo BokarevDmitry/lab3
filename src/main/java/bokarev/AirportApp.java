@@ -33,19 +33,8 @@ public class AirportApp {
         flightsRDD = flightsRDD.filter(row -> !row.equals(headerFlights));
         airportsRDD = airportsRDD.filter(row -> !row.equals(headerAirports));
 
-        JavaPairRDD<String,String> airportLib = airportsRDD.mapToPair(
-                (String s) -> {
-                    String airportsInfo[] = CSVParser.parseAirports(s);
-                    String airportCode = CSVParser.getAirCode(airportsInfo);
-                    String airportName = CSVParser.getAirportName(airportsInfo);
-                    return new Tuple2<>(
-                            CSVParser.removeQuotes(airportCode),
-                            CSVParser.removeQuotes(airportName));
-                }
-        );
-
-        //Map<String, String> stringAirportDataMap = airportLib.collectAsMap();
-        final Broadcast<Map<String, String>> airportsBroadcasted = sc.broadcast(airportLib.collectAsMap());
+        JavaPairRDD<String,String> airportDict = AirportMapper.mapAirports(airportsRDD);
+        final Broadcast<Map<String, String>> airportsBroadcasted = sc.broadcast(airportDict.collectAsMap());
 
         JavaPairRDD<Tuple2, floatPair> pairs = flightsRDD.mapToPair(
                 (String s) -> {
@@ -89,17 +78,7 @@ public class AirportApp {
                 (Tuple2<Tuple2, maxAndPercentPair> a) -> new Tuple2<>(a._1, new Tuple2<>(a._2.maxDelay, a._2.percent))
         );
 
-        System.out.println(last.collect());
+        //System.out.println(last.collect());
         last.saveAsTextFile("/user/dima/output");
-
-
-
-
-
-//        JavaPairRDD<Tuple2, Tuple2> InfoWithAirports = last.mapToPair(
-//                (Tuple2<Tuple2, Tuple2> a) -> new Tuple2<>(
-//                        new Tuple2<>(stringAirportDataMap.a._1._1),
-//                        a._2)
-//        );
     }
 }

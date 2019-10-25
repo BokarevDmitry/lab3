@@ -1,21 +1,23 @@
 package bokarev;
 
-import org.apache.hadoop.io.LongWritable;
-import org.apache.hadoop.io.Text;
-import org.apache.hadoop.mapreduce.Mapper;
-
-import java.io.IOException;
+import org.apache.spark.api.java.JavaPairRDD;
+import org.apache.spark.api.java.JavaRDD;
+import scala.Tuple2;
 
 public class AirportMapper {
-    private static String DESCRIPTION_LINE = "Code";
 
-    //@Override
-    protected void map(LongWritable key, Text value, Mapper.Context context) throws IOException, InterruptedException {
-//        String[] columns = CSVParser.parseAirports(value);
-//        String airportCode = CSVParser.getAirCode(columns);
-//
-//        if (!airportCode.contains(DESCRIPTION_LINE)) {
-//            String airportName = CSVParser.getAirportName(columns);
-//        }
+    public static JavaPairRDD<String,String> mapAirports (JavaRDD<String> airportsRDD) {
+        return airportsRDD.mapToPair(
+                (String s) -> {
+                    String airportsInfo[] = CSVParser.parseAirports(s);
+                    String airportCode = CSVParser.getAirCode(airportsInfo);
+                    String airportName = CSVParser.getAirportName(airportsInfo);
+                    return new Tuple2<>(
+                            CSVParser.removeQuotes(airportCode),
+                            CSVParser.removeQuotes(airportName));
+                }
+        );
     }
+
+
 }
