@@ -52,7 +52,8 @@ public class AirportApp {
                                 new floatPair ((float)0, cancelStatus));
                         }
                 }
-        );
+        )
+                .map((s) -> (airportsBroadcasted.value(s._1), s));
 
         //final org.apache.spark.util.LongAccumulator accum = sc.sc().longAccumulator();
 
