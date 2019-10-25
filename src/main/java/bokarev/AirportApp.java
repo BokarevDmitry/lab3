@@ -5,6 +5,8 @@ import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
 import scala.Tuple2;
 
+import java.util.Map;
+
 public class AirportApp {
     public static void main(String[] args) throws Exception {
         String DESCRIPTION_LINE = "ARR_DELAY_NEW";
@@ -75,7 +77,7 @@ public class AirportApp {
                 }
         );
 
-        int mas = airportLib.collectAsMap()
+        Map<String, String> airportMap = airportLib.collectAsMap();
 
     }
 }
