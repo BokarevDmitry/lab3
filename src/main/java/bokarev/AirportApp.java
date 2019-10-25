@@ -11,15 +11,17 @@ import org.apache.spark.util.LongAccumulator;
 
 public class AirportApp {
     public static void main(String[] args) throws Exception {
-        String DESCRIPTION_LINE = "ARR_DELAY_NEW";
-        String CANCEL_LINE = "CANCELLED";
-        String CODE_LINE = "Code";
-
         SparkConf conf = new SparkConf().setAppName("AirportApp");
         JavaSparkContext sc = new JavaSparkContext(conf);
 
         JavaRDD<String> flightsRDD = sc.textFile("/user/dima/664600583_T_ONTIME_sample.csv");
         JavaRDD<String> airportsRDD = sc.textFile("/user/dima/L_AIRPORT_ID.csv");
+
+        String headerFlights = flightsRDD.first();
+        String headerAirports = airportsRDD.first();
+
+        flightsRDD = flightsRDD.filter(row -> !row.equals(headerFlights));
+        airportsRDD = airportsRDD.filter(row -> !row.equals(headerAirports));
 
         JavaPairRDD<String,String> airportLib = airportsRDD.mapToPair(
                 (String s) -> {
@@ -40,21 +42,15 @@ public class AirportApp {
                     String[] flightsInfo = CSVParser.parseFlights(s);
                     String airportOrigin = CSVParser.getAirportOrigin(flightsInfo);
                     String airportDest = CSVParser.getAirportDest(flightsInfo);
-                    if (!flightsInfo[18].contains(DESCRIPTION_LINE)
-                            && !flightsInfo[19].contains(CANCEL_LINE))
-                    {
-                        Float cancelStatus = Float.parseFloat(CSVParser.getCancelStatus(flightsInfo));
-                        if (!flightsInfo[18].isEmpty()) {
-                            Float timeDelay = Float.parseFloat(CSVParser.getDelayTime(flightsInfo));
-                            return new Tuple2<>(new Tuple2<>(airportOrigin, airportDest),
-                                    new floatPair (timeDelay, cancelStatus));
-                         } else {
-                            return new Tuple2<>(new Tuple2<>(airportOrigin, airportDest),
-                                    new floatPair ((float)0, cancelStatus));
+                    Float cancelStatus = Float.parseFloat(CSVParser.getCancelStatus(flightsInfo));
+                    if (!flightsInfo[18].isEmpty()) {
+                        Float timeDelay = Float.parseFloat(CSVParser.getDelayTime(flightsInfo));
+                        return new Tuple2<>(new Tuple2<>(airportOrigin, airportDest),
+                                new floatPair (timeDelay, cancelStatus));
+                    }   else {
+                        return new Tuple2<>(new Tuple2<>(airportOrigin, airportDest),
+                                new floatPair ((float)0, cancelStatus));
                         }
-                    }
-                    return new Tuple2<>(new Tuple2<>("",""),
-                            new floatPair ((float)0, (float)0));
                 }
         );
 
