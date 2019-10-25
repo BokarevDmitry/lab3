@@ -26,8 +26,14 @@ public class AirportApp {
         JavaRDD<String> flightsRDD = sc.textFile("/user/dima/664600583_T_ONTIME_sample.csv");
         JavaRDD<String> airportsRDD = sc.textFile("/user/dima/L_AIRPORT_ID.csv");
 
-        CSVParser.removeHeaders(flightsRDD);
-        CSVParser.removeHeaders(airportsRDD);
+        String headerF = flightsRDD.first();
+        String headerA = airportsRDD.first();
+
+        flightsRDD.filter(row -> !row.equals(headerF));
+        flightsRDD.filter(row -> !row.equals(headerA));
+
+        //CSVParser.removeHeaders(flightsRDD);
+        //CSVParser.removeHeaders(airportsRDD);
 
         JavaPairRDD<String,String> airportDict = Mappers.mapAirports(airportsRDD);
         final Broadcast<Map<String, String>> airportsBroadcasted = sc.broadcast(airportDict.collectAsMap());
