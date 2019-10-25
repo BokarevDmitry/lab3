@@ -53,7 +53,7 @@ public class AirportApp {
                         }
                 }
         )
-                .map((s) -> (airportsBroadcasted.value(s._1), s));
+                .map((Tuple2 s) -> (airportsBroadcasted.value(s._1), s._2));
 
         //final org.apache.spark.util.LongAccumulator accum = sc.sc().longAccumulator();
 
