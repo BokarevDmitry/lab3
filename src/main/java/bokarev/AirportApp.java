@@ -52,18 +52,16 @@ public class AirportApp {
                             return new Tuple2<>(new Tuple2<>(airportOrigin, airportDest),
                                     new floatPair ((float)0, cancelStatus));
                         }
-
                     }
                     return new Tuple2<>(new Tuple2<>("",""),
                             new floatPair ((float)0, (float)0));
                 }
         );
 
-        final org.apache.spark.util.LongAccumulator accum = sc.sc().longAccumulator();
+        //final org.apache.spark.util.LongAccumulator accum = sc.sc().longAccumulator();
 
         JavaPairRDD<Tuple2, floatPair> maxDelayTime = pairs.reduceByKey(
                 (floatPair a, floatPair b) -> {
-                    accum.add(1);
                     return new floatPair( Math.max(a.getTimeDelay(), b.getTimeDelay()),
                             a.countRecords+b.countRecords,
                             a.countDelayOrCancel + b.countDelayOrCancel);
