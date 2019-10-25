@@ -59,26 +59,18 @@ public class AirportApp {
 
         //final org.apache.spark.util.LongAccumulator accum = sc.sc().longAccumulator();
 
-        JavaPairRDD<Tuple2, floatPair> maxDelayTime = pairs.reduceByKey(
-                (floatPair a, floatPair b) -> {
-                    return new floatPair( Math.max(a.getTimeDelay(), b.getTimeDelay()),
-                            a.countRecords+b.countRecords,
-                            a.countDelayOrCancel + b.countDelayOrCancel);
-                }
-        );
+        JavaPairRDD<Tuple2, Tuple2> last = pairs.reduceByKey(
+                (floatPair a, floatPair b) -> new floatPair(
+                        Math.max(a.getTimeDelay(), b.getTimeDelay()),
+                        a.countRecords+b.countRecords,
+                        a.countDelayOrCancel + b.countDelayOrCancel))
+                .mapToPair(
+                        (Tuple2<Tuple2, floatPair> a) -> new Tuple2<>(
+                                a._1,
+                                new Tuple2<>(a._2.getTimeDelay(), a._2.getPercent())));
 
 
-        JavaPairRDD<Tuple2, maxAndPercentPair> percentPairs = maxDelayTime.mapToPair(
-                (Tuple2<Tuple2, floatPair> a) -> {
-                    return new Tuple2<>(a._1, new maxAndPercentPair(a._2.getTimeDelay(), a._2.getCountRecords(), a._2.getCountDelayOrCancel()));
-                }
-        );
-
-        JavaPairRDD<Tuple2, Tuple2> last = percentPairs.mapToPair(
-                (Tuple2<Tuple2, maxAndPercentPair> a) -> new Tuple2<>(a._1, new Tuple2<>(a._2.maxDelay, a._2.percent))
-        );
-
-        //System.out.println(last.collect());
+        System.out.println(last.collect());
         last.saveAsTextFile("/user/dima/output");
     }
 }

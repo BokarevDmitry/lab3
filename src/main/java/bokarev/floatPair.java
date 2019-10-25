@@ -9,6 +9,7 @@ public class floatPair implements Serializable {
     public  Float cancelStatus;
     public  Integer countRecords;
     public  Integer countDelayOrCancel;
+    public  Float percent;
 
     public floatPair(Float timeDelay, Float cancelStatus) {
         this.timeDelay = timeDelay;
@@ -23,6 +24,7 @@ public class floatPair implements Serializable {
         this.timeDelay = timeDelay;
         this.countRecords = countRecords;
         this.countDelayOrCancel = countDelayOrCancel;
+        this.percent = (float)countDelayOrCancel*100/(float)countRecords;
     }
 
     public Float getTimeDelay() {
@@ -39,5 +41,9 @@ public class floatPair implements Serializable {
 
     public Integer getCountDelayOrCancel() {
         return countDelayOrCancel;
+    }
+
+    public Float getPercent() {
+        return percent;
     }
 }
