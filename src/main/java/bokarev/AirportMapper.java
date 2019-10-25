@@ -10,7 +10,7 @@ public class AirportMapper {
         return airportsRDD.mapToPair(
                 (String s) -> {
                     String airportsInfo[] = CSVParser.parseAirports(s);
-                    String airportCode = CSVParser.getAirCode(airportsInfo);
+                    String airportCode = CSVParser.getAirportCode(airportsInfo);
                     String airportName = CSVParser.getAirportName(airportsInfo);
                     return new Tuple2<>(
                             CSVParser.removeQuotes(airportCode),
