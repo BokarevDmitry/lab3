@@ -1,5 +1,4 @@
-bokarev/floatPair.class
+bokarev/Storage.class
 bokarev/CSVParser.class
 bokarev/AirportApp.class
-bokarev/maxAndPercentPair.class
-bokarev/AirportMapper.class
+bokarev/Mappers.class
