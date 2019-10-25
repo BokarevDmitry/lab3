@@ -20,6 +20,21 @@ public class AirportApp {
         JavaRDD<String> flightsRDD = sc.textFile("/user/dima/664600583_T_ONTIME_sample.csv");
         JavaRDD<String> airportsRDD = sc.textFile("/user/dima/L_AIRPORT_ID.csv");
 
+
+        JavaPairRDD<String,String> airportLib = airportsRDD.mapToPair(
+                (String s) -> {
+                    String airportsInfo[] = CSVParser.parseAirports(s);
+                    String airportCode = CSVParser.getAirCode(airportsInfo);
+                    String airportName = CSVParser.getAirportName(airportsInfo);
+                    return new Tuple2<>(
+                            CSVParser.removeQuotes(airportCode),
+                            CSVParser.removeQuotes(airportName));
+                }
+        );
+
+        Map<String, String> stringAirportDataMap = airportLib.collectAsMap();
+        final Broadcast<Map<String, String>> airportsBroadcasted = sc.broadcast(stringAirportDataMap);
+
         JavaPairRDD<Tuple2, floatPair> pairs = flightsRDD.mapToPair(
                 (String s) -> {
                     String[] flightsInfo = CSVParser.parseFlights(s);
@@ -27,8 +42,6 @@ public class AirportApp {
                     String airportDest = CSVParser.getAirportDest(flightsInfo);
                     if (!flightsInfo[18].contains(DESCRIPTION_LINE)
                             && !flightsInfo[19].contains(CANCEL_LINE))
-                           // && !flightsInfo[18].isEmpty()
-                           // && Float.parseFloat(flightsInfo[18])>0)
                     {
                         Float cancelStatus = Float.parseFloat(CSVParser.getCancelStatus(flightsInfo));
                         if (!flightsInfo[18].isEmpty()) {
@@ -67,25 +80,14 @@ public class AirportApp {
 
         System.out.println(last.collect());
 
-        JavaPairRDD<String,String> airportLib = airportsRDD.mapToPair(
-                (String s) -> {
-                    String airportsInfo[] = CSVParser.parseAirports(s);
-                    String airportCode = CSVParser.getAirCode(airportsInfo);
-                    String airportName = CSVParser.getAirportName(airportsInfo);
-                    return new Tuple2<>(
-                            CSVParser.removeQuotes(airportCode),
-                            CSVParser.removeQuotes(airportName));
-                }
-        );
 
-        Map<String, String> stringAirportDataMap = airportLib.collectAsMap();
 
-        final Broadcast<Map<String, String>> airportsBroadcasted = sc.broadcast(stringAirportDataMap);
 
-        JavaPairRDD<Tuple2, Tuple2> InfoWithAirports = last.mapToPair(
-                (Tuple2<Tuple2, Tuple2> a) -> new Tuple2<>(
-                        new Tuple2<>(stringAirportDataMap.a._1._1),
-                        a._2)
-        );
+
+//        JavaPairRDD<Tuple2, Tuple2> InfoWithAirports = last.mapToPair(
+//                (Tuple2<Tuple2, Tuple2> a) -> new Tuple2<>(
+//                        new Tuple2<>(stringAirportDataMap.a._1._1),
+//                        a._2)
+//        );
     }
 }
