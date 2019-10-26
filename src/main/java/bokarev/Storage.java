@@ -9,7 +9,7 @@ public class Storage implements Serializable {
     private   Integer countDelayOrCancel;
     private   Float percent;
 
-    public Storage(String timeDelay, Float cancelStatus) {
+    Storage(String timeDelay, Float cancelStatus) {
         if (!timeDelay.isEmpty()) {
             this.timeDelay = Float.parseFloat(timeDelay);
         } else this.timeDelay = (float)0;
@@ -20,7 +20,7 @@ public class Storage implements Serializable {
         } else this.countDelayOrCancel = 0;
     }
 
-    public Storage(Float timeDelay, Integer countRecords, Integer countDelayOrCancel) {
+    Storage(Float timeDelay, Integer countRecords, Integer countDelayOrCancel) {
         this.timeDelay = timeDelay;
         this.countRecords = countRecords;
         this.countDelayOrCancel = countDelayOrCancel;
